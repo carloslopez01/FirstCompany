@@ -44,10 +44,9 @@ public class EmpleadoDAO extends Conexion{
             while( res.next() ){
                 Empleado empleado = new Empleado();
                 
-                empleado.setIdEmpleado( res.getInt(0));
-                empleado.setPrimerNombre( res.getString(1) );
-                empleado.setSegundoNombre(res.getString(2) );
-                empleado.setSegundoApellido( res.getString(3) );
+                empleado.setIdEmpleado( res.getInt(1));
+                empleado.setPrimerNombre( res.getString(2) );
+                empleado.setSegundoNombre(res.getString(3) );
                 empleado.setPrimerApellido( res.getString(4) );
                 empleado.setSegundoApellido( res.getString(5) );
                 empleado.setDireccion( res.getString(6) );
@@ -66,5 +65,66 @@ public class EmpleadoDAO extends Conexion{
             this.desconectarDB();
         }
         return listaEmpleados;
+    }//end listaEmpleados
+    
+    public void insertEmploye(Empleado empleado)
+    {
+        sql = "INSERT INTO empleado VALUES(?,?,?,?,?,?,?,?,?,?)";
+        try {
+            this.conectarBD();
+            pst = this.getConection().prepareCall(sql);
+            
+            pst.setInt( 0, empleado.getIdEmpleado() );
+            pst.setString(1, empleado.getPrimerNombre());
+            pst.setString(2, empleado.getSegundoNombre());
+            pst.setString(3, empleado.getPrimerApellido());
+            pst.setString(4, empleado.getSegundoApellido());
+            pst.setString(5, empleado.getDireccion());
+            pst.setString(6, empleado.getTelefonoCelular());
+            pst.setString(7, empleado.getTelefonoCasa());
+            pst.setDouble(8, empleado.getSalario());
+            pst.setString(9, empleado.getCargo());
+            
+            pst.executeUpdate();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,"Causa: " + e.getCause()
+                   + "\nMensaje: " + e.getMessage(), "Error al Insertar Empleados",
+                   JOptionPane.ERROR_MESSAGE);
+        }finally{
+            this.desconectarDB();
+        }
+    }
+    
+    public void updateEmploye(Empleado empleado)
+    {
+        sql = "INSERT INTO empleado VALUES(?,?,?,?,?,?,?,?,?,?)";
+        try {
+            this.conectarBD();
+            pst = this.getConection().prepareCall(sql);
+            
+            pst.setInt( 0, empleado.getIdEmpleado() );
+            pst.setString(1, empleado.getPrimerNombre());
+            pst.setString(2, empleado.getSegundoNombre());
+            pst.setString(3, empleado.getPrimerApellido());
+            pst.setString(4, empleado.getSegundoApellido());
+            pst.setString(5, empleado.getDireccion());
+            pst.setString(6, empleado.getTelefonoCelular());
+            pst.setString(7, empleado.getTelefonoCasa());
+            pst.setDouble(8, empleado.getSalario());
+            pst.setString(9, empleado.getCargo());
+            
+            pst.executeUpdate();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,"Causa: " + e.getCause()
+                   + "\nMensaje: " + e.getMessage(), "Error al Insertar Empleados",
+                   JOptionPane.ERROR_MESSAGE);
+        }finally{
+            this.desconectarDB();
+        }
+    }
+    
+    public void deleteEmploye(int id)
+    {
+        
     }
 }
