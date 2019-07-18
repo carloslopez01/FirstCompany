@@ -123,7 +123,7 @@ public class EmpleadoDAO extends Conexion{
         }
     }
     
-    public void deleteEmploye(int id)
+    public void deleteEmploye(Empleado empleado)
     {
         sql = "DELETE FROM empleados WHERE id_empleado=?";
         try {
