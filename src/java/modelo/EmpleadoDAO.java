@@ -44,16 +44,17 @@ public class EmpleadoDAO extends Conexion{
             while( res.next() ){
                 Empleado empleado = new Empleado();
                 
-                empleado.setIdEmpleado( res.getInt(0) );
+                empleado.setIdEmpleado( res.getInt(0));
                 empleado.setPrimerNombre( res.getString(1) );
-                empleado.setSegundoApellido( res.getString(2) );
-                empleado.setPrimerApellido( res.getString(3) );
-                empleado.setSegundoApellido( res.getString(4) );
-                empleado.setDireccion( res.getString(5) );
-                empleado.setTelefonoCelular( res.getString(6) );
-                empleado.setTelefonoCasa( res.getString(7) );
-                empleado.setSalario( res.getDouble(8) );
-                empleado.setCargo( res.getString(9) );
+                empleado.setSegundoNombre(res.getString(2) );
+                empleado.setSegundoApellido( res.getString(3) );
+                empleado.setPrimerApellido( res.getString(4) );
+                empleado.setSegundoApellido( res.getString(5) );
+                empleado.setDireccion( res.getString(6) );
+                empleado.setTelefonoCelular( res.getString(7) );
+                empleado.setTelefonoCasa( res.getString(8) );
+                empleado.setSalario( res.getDouble(9) );
+                empleado.setCargo( res.getString(10) );
                 
                 listaEmpleados.add(empleado);
             }
