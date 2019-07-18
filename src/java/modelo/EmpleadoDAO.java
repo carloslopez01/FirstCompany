@@ -97,7 +97,7 @@ public class EmpleadoDAO extends Conexion{
     
     public void updateEmploye(Empleado empleado)
     {
-        sql = "INSERT INTO empleado VALUES(?,?,?,?,?,?,?,?,?,?)";
+        sql = "UPDATE empleado SET";
         try {
             this.conectarBD();
             pst = this.getConection().prepareCall(sql);
@@ -116,7 +116,7 @@ public class EmpleadoDAO extends Conexion{
             pst.executeUpdate();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null,"Causa: " + e.getCause()
-                   + "\nMensaje: " + e.getMessage(), "Error al Insertar Empleados",
+                   + "\nMensaje: " + e.getMessage(), "Error al Actualizar Empleados",
                    JOptionPane.ERROR_MESSAGE);
         }finally{
             this.desconectarDB();
@@ -125,6 +125,20 @@ public class EmpleadoDAO extends Conexion{
     
     public void deleteEmploye(int id)
     {
-        
+        sql = "DELETE FROM empleados WHERE id_empleado=?";
+        try {
+            this.conectarBD();
+            pst = this.getConection().prepareCall(sql);
+            
+            pst.setInt( 0, empleado.getIdEmpleado() );
+            
+            pst.executeUpdate();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,"Causa: " + e.getCause()
+                   + "\nMensaje: " + e.getMessage(), "Error al Eliminar Empleados",
+                   JOptionPane.ERROR_MESSAGE);
+        }finally{
+            this.desconectarDB();
+        }
     }
 }
